@@ -1,0 +1,17 @@
+E:\User\GND\Documents\GitHub\DemoProject\TaskScheduler\obj\Debug\TaskScheduler.csprojResolveAssemblyReference.cache
+E:\User\GND\Documents\GitHub\DemoProject\TaskScheduler\bin\Debug\TaskScheduler.exe.config
+E:\User\GND\Documents\GitHub\DemoProject\TaskScheduler\bin\Debug\TaskScheduler.exe
+E:\User\GND\Documents\GitHub\DemoProject\TaskScheduler\bin\Debug\TaskScheduler.pdb
+E:\User\GND\Documents\GitHub\DemoProject\TaskScheduler\bin\Debug\FluentScheduler.dll
+E:\User\GND\Documents\GitHub\DemoProject\TaskScheduler\bin\Debug\Quartz.dll
+E:\User\GND\Documents\GitHub\DemoProject\TaskScheduler\bin\Debug\FluentScheduler.pdb
+E:\User\GND\Documents\GitHub\DemoProject\TaskScheduler\bin\Debug\FluentScheduler.xml
+E:\User\GND\Documents\GitHub\DemoProject\TaskScheduler\bin\Debug\Quartz.pdb
+E:\User\GND\Documents\GitHub\DemoProject\TaskScheduler\bin\Debug\Quartz.xml
+E:\User\GND\Documents\GitHub\DemoProject\TaskScheduler\obj\Debug\TaskScheduler.exe
+E:\User\GND\Documents\GitHub\DemoProject\TaskScheduler\obj\Debug\TaskScheduler.pdb
+E:\User\GND\Documents\GitHub\DemoProject\TaskScheduler\bin\Debug\EntityFramework.dll
+E:\User\GND\Documents\GitHub\DemoProject\TaskScheduler\bin\Debug\EntityFramework.SqlServer.dll
+E:\User\GND\Documents\GitHub\DemoProject\TaskScheduler\bin\Debug\EntityFramework.xml
+E:\User\GND\Documents\GitHub\DemoProject\TaskScheduler\bin\Debug\EntityFramework.SqlServer.xml
+E:\User\GND\Documents\GitHub\DemoProject\TaskScheduler\bin\Debug\CronNET.dll

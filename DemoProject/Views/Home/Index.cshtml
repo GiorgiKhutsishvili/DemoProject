@@ -1,0 +1,173 @@
+﻿@model IEnumerable<DemoProject.Models.Person>
+
+
+
+
+<script>
+$(document).ready(function(){
+    $("#searchInput").on("keyup", function () {
+    var searchValue = $(this).val().toLowerCase();
+    $("#personTable tr").filter(function () {
+        $(this).toggle($(this).text().toLowerCase().indexOf(searchValue) > -1)
+    });
+  });
+});
+</script>
+
+<br /><br />
+
+<p>
+    @Html.ActionLink("ახლის დამატება", "Register", "Account")
+</p>
+
+<input class="form-control" id="searchInput" type="text" placeholder="ძებნა..">
+<br />
+<table class="table-striped">
+    <thead>
+        <tr>
+            <th>
+                პირადი #
+            </th>
+            <th>
+                სახელი
+            </th>
+            <th>
+                გვარი
+            </th>
+            <th>
+                ასაკი
+            </th>
+            <th>
+                მობილური
+            </th>
+            <th>
+                პროფესია
+            </th>
+            <th>
+                რეგისტრაციის თარიღი
+            </th>
+            <th>
+                გაუქმების თარიღი
+            </th>
+            <th></th>
+            <th></th>
+            
+        </tr>
+    </thead>
+    @foreach (var item in Model)
+    {
+
+        DateTime DateNow = DateTime.Today;
+        int Age = DateNow.Year - item.Birth_Date.Year;
+        if (DateNow < item.Birth_Date.AddYears(Age))
+        {
+            Age--;
+        }
+    <tbody id="personTable">
+        <tr class="displayedPersons">
+            <td class="hidden">
+                @item.ID
+            </td>
+            <td>
+                @item.IdentityID
+            </td>
+            <td>
+                @item.Name
+            </td>
+            <td>
+                @item.Surname
+            </td>
+            <td>
+                @Age
+            </td>
+            <td>
+                @item.Phone
+            </td>
+            <td>
+                @item.Profession
+            </td>
+            <td>
+                @item.RegistrationDate.ToShortDateString()
+            </td>
+            <td>
+                @item.CancelDate
+            </td>
+                        
+
+            @if (item.IdentityID == item.IdentityID && Age > 30)
+            {
+                <td style="background-color:red"><p style="color:white">დუბლირებული ჩანაწერი</p></td>
+            }
+            else
+            {
+                if (item.Status == "inActive")
+                {
+                    <td style="background-color:red"></td>
+                }
+                else
+                {
+                    <td style="background-color:green"></td>
+                }
+
+            }
+            @if (item.Status == "inActive")
+            {
+                <td>
+                    <input id="@item.ID" class="cancel" type="button" value="გაუქმებული" disabled title="გაუქმებული">
+                </td>
+            }
+            else
+            {
+                <td>
+                    <input id="@item.ID" data-toggle="modal" data-target="#myModal" class="cancel" type="button" value="გაუქმება" title="გაუქმება">
+                </td>
+            }
+            
+        </tr>
+        
+    </tbody>
+
+    }
+</table>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+    <div style="width:30%" class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <p><strong style="color:red; font-size:16px; margin-left:3px; color:#e80c4d;">ჩანაწერის გაუქმება! დარწმუნებული ხართ?</strong></p>
+                <br />
+                <input id="confirmCancel" type="button" data-toggle="modal" data-target="#myModal" class="confirmCancel" value="გაუქმება" title="გაუქმება">
+                <input style="float:right; position:absolute" id="dismiss" class="dismissBtn" type="button" data-dismiss="modal" value="უარყოფა" title="უარყოფა">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        var tr;
+        var id;
+
+        $(".cancel").click(function () {
+            
+            tr = $(this).closest('tr');
+            id = tr.find('td:first').html();
+           
+            $('#confirmCancel').on("click", function () {
+                
+                $.ajax({
+                    url: '/Home/ConfirmCancel',
+                    method: 'POST',
+                    data: { 'id': id },
+                    success: function (response) {
+                        if (response == "CancelSucceeded") {
+                            $('.displayedPersons').trigger('click');
+                            window.location.href = "/Home/Index"; 
+                        }
+                    }
+                });
+            });
+        });
+    });
+</script>
